@@ -3,7 +3,6 @@ import { Shield, Mail, Phone, ExternalLink } from 'lucide-react'
 
 const Footer = () => {
   const quickLinks = [
-    { name: 'Emergency: 1930', url: 'tel:1930' },
     { name: 'Cyber Crime Portal', url: 'https://cybercrime.gov.in/' },
     { name: 'CERT-IN', url: 'https://www.cert-in.org.in/' },
     { name: 'Digital India', url: 'https://www.digitalindia.gov.in/' },
