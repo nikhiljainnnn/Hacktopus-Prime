@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Shield, AlertTriangle, Users, BookOpen, Award, TrendingUp, Smartphone, CreditCard, UserCheck } from 'lucide-react'
 
 const Home = () => {
@@ -53,14 +54,12 @@ const Home = () => {
               Comprehensive cyber safety platform designed for all Indians. 
               Learn, protect, and empower yourself against online threats.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="btn-primary text-lg px-8 py-3">
-                Learn About Threats
-              </button>
-              <button className="btn-secondary text-lg px-8 py-3">
-                Take Safety Quiz
-              </button>
-            </div>
+                                                               <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                             <Link to="/simulator" className="btn-primary text-lg px-8 py-3 inline-flex items-center justify-center space-x-2">
+                         <span className="text-xl">🎮</span>
+                         <span>Try Threat Simulator</span>
+                       </Link>
+                    </div>
           </div>
         </div>
       </section>

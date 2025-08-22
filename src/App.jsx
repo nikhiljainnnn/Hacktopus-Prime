@@ -8,6 +8,8 @@ import Resources from './pages/Resources'
 import Quiz from './pages/Quiz'
 import Help from './pages/Help'
 import Report from './pages/Report'
+import ThreatSimulator from './pages/ThreatSimulator'
+import Dashboard from './pages/Dashboard'
 import Footer from './components/Footer'
 
 function App() {
@@ -24,6 +26,9 @@ function App() {
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/help" element={<Help />} />
             <Route path="/report" element={<Report />} />
+            <Route path="/simulator" element={<ThreatSimulator />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/safety-score" element={<div className="py-16 text-center text-2xl font-bold">Safety Score Page Coming Soon!</div>} />
           </Routes>
         </main>
         <Footer />
