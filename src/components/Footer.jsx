@@ -1,7 +1,20 @@
 import React from 'react'
-import { Shield, Mail, Phone } from 'lucide-react'
+import { Shield, Mail, Phone, ExternalLink } from 'lucide-react'
 
 const Footer = () => {
+  const quickLinks = [
+    { name: 'Emergency: 1930', url: 'tel:1930' },
+    { name: 'Cyber Crime Portal', url: 'https://cybercrime.gov.in/' },
+    { name: 'CERT-IN', url: 'https://www.cert-in.org.in/' },
+    { name: 'Digital India', url: 'https://www.digitalindia.gov.in/' },
+  ]
+
+  const emergencyContacts = [
+    { icon: <Phone className="h-4 w-4" />, text: '1930 - Cyber Crime Helpline' },
+    { icon: <Phone className="h-4 w-4" />, text: '100 - Police Emergency' },
+    { icon: <Mail className="h-4 w-4" />, text: 'cybercrime.gov.in' },
+  ]
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -28,10 +41,21 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li className="text-gray-300">Common Threats</li>
-              <li className="text-gray-300">Demographics</li>
-              <li className="text-gray-300">Resources</li>
-              <li className="text-gray-300">Safety Quiz</li>
+              {quickLinks.map((link, idx) => (
+                <li key={idx}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-gray-300 hover:text-primary-400 transition-colors"
+                  >
+                    <span>{link.name}</span>
+                    {link.url.startsWith('http') && (
+                      <ExternalLink className="h-3 w-3" />
+                    )}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -39,18 +63,12 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Emergency Contacts</h3>
             <ul className="space-y-2 text-gray-300">
-              <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <span>1930 - Cyber Crime Helpline</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <span>100 - Police Emergency</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Mail className="h-4 w-4" />
-                <span>cybercrime.gov.in</span>
-              </li>
+              {emergencyContacts.map((contact, idx) => (
+                <li key={idx} className="flex items-center space-x-2">
+                  {contact.icon}
+                  <span>{contact.text}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
