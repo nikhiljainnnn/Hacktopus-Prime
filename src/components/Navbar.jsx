@@ -6,15 +6,15 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
 
-  const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Threats', path: '/threats' },
-    { name: 'Demographics', path: '/demographics' },
-    { name: 'Resources', path: '/resources' },
-    { name: 'Quiz', path: '/quiz' },
-    { name: 'Help', path: '/help' },
-    { name: 'Report', path: '/report' },
-  ]
+                       const navItems = [
+            { name: 'Home', path: '/' },
+            { name: 'Threats', path: '/threats' },
+            { name: 'Demographics', path: '/demographics' },
+            { name: 'Resources', path: '/resources' },
+            { name: 'Quiz', path: '/quiz' },
+            { name: 'Help', path: '/help' },
+            { name: 'Report', path: '/report' },
+          ]
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">

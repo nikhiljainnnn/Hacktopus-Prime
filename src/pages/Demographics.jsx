@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Users, GraduationCap, Briefcase, Home, MapPin, User, Shield, AlertTriangle, CheckCircle } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Users, GraduationCap, Briefcase, Home, MapPin, User, Shield, AlertTriangle, CheckCircle, BarChart3 } from 'lucide-react'
 
 const Demographics = () => {
   const [selectedDemo, setSelectedDemo] = useState('students')
@@ -246,6 +247,25 @@ const Demographics = () => {
               <p className="text-gray-600 text-sm">Don't hesitate to ask trusted family members or friends for help</p>
             </div>
           </div>
+        </div>
+
+        {/* Dashboard Button */}
+        <div className="mt-12 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-8 text-center">
+          <div className="flex justify-center mb-4">
+            <BarChart3 className="h-12 w-12 text-blue-600" />
+          </div>
+          <h3 className="text-2xl font-bold text-blue-900 mb-4">Want to See Real Attack Data?</h3>
+          <p className="text-blue-700 mb-6 max-w-2xl mx-auto">
+            Explore our comprehensive dashboard with interactive charts showing cyber attack statistics, 
+            threat distributions, and demographic vulnerabilities across India.
+          </p>
+          <Link 
+            to="/dashboard" 
+            className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg"
+          >
+            <BarChart3 className="h-5 w-5" />
+            <span>View Live Dashboard</span>
+          </Link>
         </div>
 
         {/* Emergency Contacts */}
