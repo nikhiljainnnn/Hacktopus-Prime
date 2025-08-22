@@ -1,5 +1,6 @@
 import React from 'react'
 import Home from './pages/Home'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <main>
         <Home />
       </main>
+      <Footer />
     </div>
   )
 }
