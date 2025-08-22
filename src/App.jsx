@@ -7,6 +7,7 @@ import Demographics from './pages/Demographics'
 import Resources from './pages/Resources'
 import Quiz from './pages/Quiz'
 import Help from './pages/Help'
+import Report from './pages/Report'
 import Footer from './components/Footer'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/resources" element={<Resources />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/help" element={<Help />} />
+            <Route path="/report" element={<Report />} />
           </Routes>
         </main>
         <Footer />
