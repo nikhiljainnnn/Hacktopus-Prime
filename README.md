@@ -1,22 +1,33 @@
-# CyberShield - Cyber Safety Platform
+#CyberShield - Cyber Safety and Platform to spread Awareness
 
-A comprehensive cyber safety platform designed specifically for different demographics in India. This platform raises awareness, educates users, and empowers them to recognize, prevent, and respond to cyber threats.
+CyberShield is an innovative Cyber Safety Platform designed to educate, protect, and empower users against a wide range of cyber threats. With an interactive and user-friendly interface, this platform addresses cybersecurity challenges faced by students, professionals, and everyday internet users.
 
-## 🛡️ Features
 
-### Core Features
-- **Threat Awareness**: Learn about common cyber threats in India including phishing, UPI scams, OTP fraud, and identity theft
-- **Demographics-Based Guidance**: Tailored safety tips for students, professionals, homemakers, rural users, and senior citizens
-- **Interactive Quiz**: Test your cyber safety knowledge with an educational quiz
-- **Resource Center**: Tools, guides, and emergency contacts
-- **Emergency Contacts**: Quick access to official helpline numbers
+
+**Core Features**
+
+**User Authentication & Authorization**
+Secure login and registration system, with encrypted password storage and role-based access control.
+
+**Interactive Cyber Safety Quizzes**
+Test knowledge with dynamic quizzes on phishing, scams, identity theft, and other cybersecurity threats.
+
+**Real-Time Risk Alerts**
+Notifications and warnings for suspicious activity and potential cyber threats.
+
+**Admin Dashboard**
+Manage users, quizzes, and monitor platform usage statistics in one place.
+
+**Responsive Design**
+Works seamlessly across devices, ensuring accessibility for all users.
+
 
 ### Key Sections
 1. **Home**: Overview with statistics and quick access to different sections
 2. **Threats**: Detailed information about common cyber threats with examples and prevention tips
 3. **Demographics**: Personalized safety guidance for different user groups
-4. **Resources**: Downloadable guides, safety tools, and official resources
-5. **Quiz**: Interactive assessment to test and improve cyber safety knowledge
+4. **Quiz**: Interactive assessment to test and improve cyber safety knowledge
+5. **Report**: Report incedent regarding the cyber crime 
 
 ## 🚀 Getting Started
 
@@ -24,32 +35,18 @@ A comprehensive cyber safety platform designed specifically for different demogr
 - Node.js (version 16 or higher)
 - npm or yarn package manager
 
-### Installation
+**Sections**
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd cyber-safety-platform
-   ```
+**Frontend (React + Vite)**
+Dynamic and responsive UI
+Quizzes, dashboards, and alert notifications
+Smooth navigation and real-time feedback
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+**Backend (Node.js + Express + MongoDB)**
+RESTful APIs for authentication, quiz management, and user tracking
+JWT-based secure authentication
+MongoDB for scalable and efficient data storage
 
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**
-   Navigate to `http://localhost:3000` to view the application
-
-### Build for Production
-
-```bash
-npm run build
-```
 
 ## 🛠️ Technology Stack
 
@@ -63,28 +60,22 @@ npm run build
 
 The platform is fully responsive and works seamlessly on:
 - Desktop computers
-- Tablets
-- Mobile phones
 
 ## 🎯 Target Demographics
 
 ### Students
-- Social media privacy issues
 - Online gaming scams
 - Fake job offers
-- Educational app frauds
 
 ### Working Professionals
 - Corporate email phishing
 - Business email compromise
-- Data breach threats
 - Financial fraud targeting salary accounts
 
 ### Homemakers
 - Online shopping scams
 - Fake customer care calls
 - Social media privacy issues
-- Family member account security
 
 ### Rural Users
 - Fake government schemes
@@ -96,7 +87,6 @@ The platform is fully responsive and works seamlessly on:
 - Fake health insurance calls
 - Pension and banking fraud
 - Fake investment schemes
-- Social engineering attacks
 
 ## 🚨 Emergency Contacts
 
@@ -112,7 +102,6 @@ The platform includes:
 - Real-world examples of cyber threats
 - Step-by-step prevention guides
 - Interactive learning through quizzes
-- Downloadable safety materials
 - Links to official government resources
 
 ## 🎨 Design Features
@@ -120,18 +109,9 @@ The platform includes:
 - **Modern UI**: Clean, intuitive interface with modern design principles
 - **Accessibility**: Designed to be accessible to users of all technical levels
 - **Visual Hierarchy**: Clear information architecture for easy navigation
-- **Color Coding**: Consistent color scheme for different types of information
 - **Interactive Elements**: Engaging components to maintain user interest
 
-## 🔒 Security Focus
 
-The platform emphasizes:
-- Password security best practices
-- Two-factor authentication
-- Safe online shopping habits
-- Social media privacy protection
-- Financial transaction safety
-- Identity theft prevention
 
 ## 📈 Impact Goals
 
