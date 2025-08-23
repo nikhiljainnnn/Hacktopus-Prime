@@ -11,6 +11,7 @@ import Report from './pages/Report'
 import ThreatSimulator from './pages/ThreatSimulator'
 import Dashboard from './pages/Dashboard'
 import Footer from './components/Footer'
+import Chatbot from './components/Chatbot'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <Chatbot />
       </div>
     </Router>
   )
