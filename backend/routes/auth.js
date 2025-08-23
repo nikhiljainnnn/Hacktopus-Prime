@@ -255,6 +255,152 @@ router.post('/refresh', protect, async (req, res) => {
   }
 });
 
+// @desc    Update user profile
+// @route   PUT /api/auth/profile
+// @access  Private
+router.put('/profile', protect, [
+  body('firstName')
+    .optional()
+    .trim()
+    .isLength({ min: 1, max: 50 })
+    .withMessage('First name cannot exceed 50 characters'),
+  
+  body('lastName')
+    .optional()
+    .trim()
+    .isLength({ min: 1, max: 50 })
+    .withMessage('Last name cannot exceed 50 characters'),
+  
+  body('phone')
+    .optional()
+    .trim()
+    .matches(/^[\+]?[1-9][\d]{0,15}$/)
+    .withMessage('Please provide a valid phone number'),
+  
+  body('dateOfBirth')
+    .optional()
+    .isISO8601()
+    .withMessage('Please provide a valid date of birth'),
+  
+  body('gender')
+    .optional()
+    .isIn(['male', 'female', 'other', 'prefer-not-to-say'])
+    .withMessage('Please select a valid gender'),
+  
+  body('location')
+    .optional()
+    .trim()
+    .isLength({ max: 100 })
+    .withMessage('Location cannot exceed 100 characters'),
+  
+  body('occupation')
+    .optional()
+    .trim()
+    .isLength({ max: 100 })
+    .withMessage('Occupation cannot exceed 100 characters'),
+  
+  body('notifications.email')
+    .optional()
+    .isBoolean()
+    .withMessage('Email notifications must be a boolean'),
+  
+  body('notifications.sms')
+    .optional()
+    .isBoolean()
+    .withMessage('SMS notifications must be a boolean'),
+  
+  body('notifications.push')
+    .optional()
+    .isBoolean()
+    .withMessage('Push notifications must be a boolean'),
+  
+  body('notifications.security')
+    .optional()
+    .isBoolean()
+    .withMessage('Security notifications must be a boolean'),
+  
+  body('privacy.profileVisibility')
+    .optional()
+    .isIn(['public', 'friends', 'private'])
+    .withMessage('Profile visibility must be public, friends, or private'),
+  
+  body('privacy.showEmail')
+    .optional()
+    .isBoolean()
+    .withMessage('Show email must be a boolean'),
+  
+  body('privacy.showPhone')
+    .optional()
+    .isBoolean()
+    .withMessage('Show phone must be a boolean'),
+  
+  body('privacy.showLocation')
+    .optional()
+    .isBoolean()
+    .withMessage('Show location must be a boolean')
+], async (req, res) => {
+  try {
+    // Check for validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation failed',
+        errors: errors.array()
+      });
+    }
+
+    // Get user
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found'
+      });
+    }
+
+    // Update user fields
+    const updateFields = [
+      'firstName', 'lastName', 'phone', 'dateOfBirth', 'gender', 
+      'location', 'occupation', 'notifications', 'privacy'
+    ];
+
+    updateFields.forEach(field => {
+      if (req.body[field] !== undefined) {
+        user[field] = req.body[field];
+      }
+    });
+
+    // Save updated user
+    await user.save();
+
+    res.json({
+      success: true,
+      message: 'Profile updated successfully',
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phone: user.phone,
+        dateOfBirth: user.dateOfBirth,
+        gender: user.gender,
+        location: user.location,
+        occupation: user.occupation,
+        notifications: user.notifications,
+        privacy: user.privacy
+      }
+    });
+  } catch (error) {
+    console.error('Profile update error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error updating profile'
+    });
+  }
+});
+
 // @desc    Change password
 // @route   PUT /api/auth/change-password
 // @access  Private

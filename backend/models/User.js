@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema({
     trim: true,
     match: [/^\w+([.-]?\w+)@\w+([.-]?\w+)(\.\w{2,3})+$/, 'Please enter a valid email']
   },
+  phone: {
+    type: String,
+    trim: true,
+    match: [/^[\+]?[1-9][\d]{0,15}$/, 'Please provide a valid phone number']
+  },
   password: {
     type: String,
     required: [true, 'Password is required'],
@@ -46,6 +51,15 @@ const userSchema = new mongoose.Schema({
     min: [5, 'Age must be at least 5'],
     max: [120, 'Age cannot exceed 120']
   },
+  dateOfBirth: {
+    type: Date,
+    validate: {
+      validator: function(v) {
+        return v <= new Date();
+      },
+      message: 'Date of birth cannot be in the future'
+    }
+  },
   gender: {
     type: String,
     required: [true, 'Gender is required'],
@@ -62,6 +76,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'City is required'],
     trim: true
+  },
+  location: {
+    type: String,
+    trim: true,
+    maxlength: [100, 'Location cannot exceed 100 characters']
   },
 
   // Education & Occupation
@@ -130,6 +149,26 @@ const userSchema = new mongoose.Schema({
       enum: ['light', 'dark', 'auto'],
       default: 'auto'
     }
+  },
+  
+  // Notification Preferences
+  notifications: {
+    email: { type: Boolean, default: true },
+    sms: { type: Boolean, default: true },
+    push: { type: Boolean, default: true },
+    security: { type: Boolean, default: true }
+  },
+  
+  // Privacy Settings
+  privacy: {
+    profileVisibility: {
+      type: String,
+      enum: ['public', 'friends', 'private'],
+      default: 'public'
+    },
+    showEmail: { type: Boolean, default: false },
+    showPhone: { type: Boolean, default: false },
+    showLocation: { type: Boolean, default: false }
   },
 
   // Security

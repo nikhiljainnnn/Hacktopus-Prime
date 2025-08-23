@@ -5,13 +5,13 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Threats from './pages/Threats'
 import Demographics from './pages/Demographics'
-import Resources from './pages/Resources'
 import Quiz from './pages/Quiz'
 import Help from './pages/Help'
 import Report from './pages/Report'
 import ThreatSimulator from './pages/ThreatSimulator'
 import Dashboard from './pages/Dashboard'
 import SafetyGuide from './pages/SafetyGuide'
+import Profile from './pages/Profile'
 import Footer from './components/Footer'
 import Chatbot from './components/Chatbot'
 import Login from './pages/Login'
@@ -43,13 +43,12 @@ function AppContent() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/threats" element={<Threats />} />
           <Route path="/demographics" element={<Demographics />} />
-          <Route path="/resources" element={<Resources />} />
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/help" element={<Help />} />
           <Route path="/report" element={<Report />} />
-                             <Route path="/simulator" element={<ThreatSimulator />} />
-                   <Route path="/dashboard" element={<Dashboard />} />
-                   <Route path="/safety-guide" element={<SafetyGuide />} />
+          <Route path="/simulator" element={<ThreatSimulator />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/safety-guide" element={<SafetyGuide />} />
 
           <Route
             path="/safety-score"
@@ -66,6 +65,16 @@ function AppContent() {
             element={
               <ProtectedRoute>
                 <Home />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Protected Profile route */}
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
               </ProtectedRoute>
             }
           />

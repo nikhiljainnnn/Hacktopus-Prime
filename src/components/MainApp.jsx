@@ -5,7 +5,7 @@ import Footer from './Footer';
 import Home from '../pages/Home';
 import Threats from '../pages/Threats';
 import Demographics from '../pages/Demographics';
-import Resources from '../pages/Resources';
+
 import Quiz from '../pages/Quiz';
 import Help from '../pages/Help';
 import Report from '../pages/Report';
@@ -24,7 +24,7 @@ const MainApp = () => {
           <Route path="/" element={<Home />} />
           <Route path="/threats" element={<Threats />} />
           <Route path="/demographics" element={<Demographics />} />
-          <Route path="/resources" element={<Resources />} />
+  
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/help" element={<Help />} />
           <Route path="/report" element={<Report />} />

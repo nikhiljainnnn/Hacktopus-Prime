@@ -40,14 +40,36 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (identifier, password) => {
     try {
-      // Simulate successful login (replace with real API in production)
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Mock user data - you can customize this
       const mockUser = {
-        username: identifier,
+        id: '1',
+        username: 'user',
         firstName: 'User',
-        lastName: 'Demo',
-        email: identifier.includes('@') ? identifier : `${identifier}@example.com`,
+        lastName: 'Name',
+        email: 'user@example.com',
+        phone: '+1234567890',
+        dateOfBirth: '1990-01-01',
+        gender: 'prefer-not-to-say',
+        location: 'User City',
+        occupation: 'Student',
+        notifications: {
+          email: true,
+          sms: true,
+          push: true,
+          security: true
+        },
+        privacy: {
+          profileVisibility: 'public',
+          showEmail: false,
+          showPhone: false,
+          showLocation: false
+        }
       };
-      const mockToken = 'mock-jwt-token-' + Date.now();
+
+      const mockToken = 'mock_jwt_token_' + Date.now();
 
       // Store data locally
       localStorage.setItem('token', mockToken);
@@ -65,14 +87,36 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (userData) => {
     try {
-      // Simulate successful signup (replace with real API in production)
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Create mock user from signup data
       const mockUser = {
-        username: userData.username,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
+        id: '2',
+        username: userData.username || 'user',
+        firstName: userData.firstName || 'User',
+        lastName: userData.lastName || 'Name',
         email: userData.email,
+        phone: userData.phone || '+1234567890',
+        dateOfBirth: userData.dateOfBirth || '1990-01-01',
+        gender: userData.gender || 'prefer-not-to-say',
+        location: userData.location || 'User City',
+        occupation: userData.occupation || 'Student',
+        notifications: {
+          email: true,
+          sms: true,
+          push: true,
+          security: true
+        },
+        privacy: {
+          profileVisibility: 'public',
+          showEmail: false,
+          showPhone: false,
+          showLocation: false
+        }
       };
-      const mockToken = 'mock-jwt-token-' + Date.now();
+
+      const mockToken = 'mock_jwt_token_' + Date.now();
 
       // Store data locally
       localStorage.setItem('token', mockToken);
@@ -96,9 +140,22 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const updateUser = (updatedUser) => {
-    setUser(updatedUser);
-    localStorage.setItem('user', JSON.stringify(updatedUser));
+  const updateUser = async (updateData) => {
+    try {
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Create updated user object
+      const updatedUser = { ...user, ...updateData };
+      
+      // Update state and localStorage
+      setUser(updatedUser);
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+      
+      return { success: true, user: updatedUser };
+    } catch (error) {
+      throw new Error('Failed to update user: ' + error.message);
+    }
   };
 
   const isAuthenticated = () => {

@@ -14,11 +14,9 @@ const Navbar = () => {
     { name: 'Home', path: '/home' },
     { name: 'Threats', path: '/threats' },
     { name: 'Demographics', path: '/demographics' },
-    { name: 'Resources', path: '/resources' },
     { name: 'Quiz', path: '/quiz' },
     { name: 'Help', path: '/help' },
     { name: 'Report', path: '/report' },
-    { name: 'Dashboard', path: '/dashboard' },
   ]
 
   const handleLogout = () => {
@@ -31,14 +29,15 @@ const Navbar = () => {
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
+          {/* Left side - Logo */}
           <div className="flex items-center">
-            <Link to={isAuthenticated() ? "/home" : "/"} className="flex items-center space-x-2">
+            <Link to={isAuthenticated() ? "/home" : "/"} className="flex items-center space-x-3">
               <Shield className="h-8 w-8 text-blue-600" />
               <span className="text-xl font-bold text-gray-900">Hacktopus Prime</span>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Center - Navigation Items */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
@@ -55,7 +54,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* User Menu / Auth Buttons */}
+          {/* Right side - User Menu / Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             {isAuthenticated() ? (
               <div className="relative">
