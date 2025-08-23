@@ -1,6 +1,6 @@
-# Dashboard API Documentation
+# CyberShield API Documentation
 
-This document explains how to set up and use the real-time dashboard API for the Hacktopus Prime cyber safety platform.
+This document explains how to set up and use the real-time dashboard API for the CyberShield cyber safety platform.
 
 ## 🚀 Quick Setup
 

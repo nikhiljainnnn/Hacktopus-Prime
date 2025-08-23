@@ -73,12 +73,9 @@ if (process.env.NODE_ENV === 'development') {
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
-    success: true,
-    status: 'OK',
-    message: 'Hacktopus Prime Backend is running',
+    status: 'success',
+    message: 'CyberShield Backend is running',
     timestamp: new Date().toISOString(),
-    database: mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected',
-    environment: process.env.NODE_ENV || 'development',
     uptime: process.uptime()
   });
 });

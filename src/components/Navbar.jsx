@@ -33,7 +33,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to={isAuthenticated() ? "/home" : "/"} className="flex items-center space-x-3">
               <Shield className="h-8 w-8 text-blue-600" />
-              <span className="text-xl font-bold text-gray-900">Hacktopus Prime</span>
+              <span className="text-xl font-bold text-gray-900">CyberShield</span>
             </Link>
           </div>
 

@@ -8,9 +8,9 @@ const Landing = () => {
       {/* Navigation */}
       <nav className="px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <Shield className="h-8 w-8 text-blue-600" />
-            <span className="text-2xl font-bold text-gray-900">Hacktopus Prime</span>
+            <span className="text-2xl font-bold text-gray-900">CyberShield</span>
           </div>
           <div className="flex items-center space-x-4">
             <Link
@@ -61,8 +61,8 @@ const Landing = () => {
       {/* Features Section */}
       <div className="px-6 py-20 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-16">
-            Why Choose Hacktopus Prime?
+          <h2 className="text-3xl font-bold text-center mb-16 text-gray-900">
+            Why Choose CyberShield?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6">
@@ -142,15 +142,15 @@ const Landing = () => {
       {/* Footer */}
       <footer className="px-6 py-12 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <Shield className="h-6 w-6 text-blue-400" />
-            <span className="text-xl font-bold">Hacktopus Prime</span>
+          <div className="flex items-center space-x-3 mb-4">
+            <Shield className="h-8 w-8 text-blue-600" />
+            <span className="text-xl font-bold">CyberShield</span>
           </div>
           <p className="text-gray-400 mb-4">
             Empowering India with cyber safety knowledge
           </p>
           <div className="text-sm text-gray-500">
-            © 2024 Hacktopus Prime. All rights reserved.
+            © 2024 CyberShield. All rights reserved.
           </div>
         </div>
       </footer>

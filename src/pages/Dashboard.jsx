@@ -458,16 +458,16 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-8">
+        {/* Header - Reduced spacing */}
+        <div className="mb-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Live Threat Dashboard</h1>
-              <p className="text-gray-600 mt-2">Real-time cyber attack statistics and trends across India</p>
+              <h1 className="text-2xl font-bold text-gray-900">Live Threat Dashboard</h1>
+              <p className="text-gray-600 mt-1">Real-time cyber attack statistics and trends across India</p>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3">
               {/* Real-time Status */}
               <div className="flex items-center space-x-2 text-sm">
                 <div className={`flex items-center space-x-1 ${isOnline ? 'text-green-600' : 'text-red-600'}`}>
@@ -484,7 +484,7 @@ const Dashboard = () => {
               <select
                 value={selectedTimeframe}
                 onChange={(e) => setSelectedTimeframe(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
               >
                 <option value="7d">Last 7 Days</option>
                 <option value="30d">Last 30 Days</option>
@@ -495,72 +495,72 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Stats Cards */}
+        {/* Stats Cards - Reduced spacing */}
         {dashboardData.stats && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Total Attacks</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">{dashboardData.stats.attacks.total.toLocaleString()}</p>
+                  <p className="text-xl font-bold text-gray-900 mt-1">{dashboardData.stats.attacks.total.toLocaleString()}</p>
                   <p className="text-sm font-medium mt-1 text-green-600">+12.5%</p>
                 </div>
-                <div className="p-3 rounded-full bg-gray-50 text-red-600">
-                  <AlertTriangle className="h-6 w-6" />
+                <div className="p-2 rounded-full bg-gray-50 text-red-600">
+                  <AlertTriangle className="h-5 w-5" />
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+            <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Resolution Rate</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">{dashboardData.stats.attacks.resolutionRate}%</p>
+                  <p className="text-xl font-bold text-gray-900 mt-1">{dashboardData.stats.attacks.resolutionRate}%</p>
                   <p className="text-sm font-medium mt-1 text-blue-600">+8.2%</p>
                 </div>
-                <div className="p-3 rounded-full bg-gray-50 text-green-600">
-                  <Shield className="h-6 w-6" />
+                <div className="p-2 rounded-full bg-gray-50 text-green-600">
+                  <Shield className="h-5 w-5" />
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+            <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Total Loss</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">₹{dashboardData.stats.attacks.totalLoss.toLocaleString()}</p>
+                  <p className="text-xl font-bold text-gray-900 mt-1">₹{dashboardData.stats.attacks.totalLoss.toLocaleString()}</p>
                   <p className="text-sm font-medium mt-1 text-red-600">+15.8%</p>
                 </div>
-                <div className="p-3 rounded-full bg-gray-50 text-blue-600">
-                  <CreditCard className="h-6 w-6" />
+                <div className="p-2 rounded-full bg-gray-50 text-blue-600">
+                  <CreditCard className="h-5 w-5" />
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+            <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">Active Users</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">{dashboardData.stats.users.active.toLocaleString()}</p>
+                  <p className="text-xl font-bold text-gray-900 mt-1">{dashboardData.stats.users.active.toLocaleString()}</p>
                   <p className="text-sm font-medium mt-1 text-purple-600">+5.8%</p>
                 </div>
-                <div className="p-3 rounded-full bg-gray-50 text-purple-600">
-                  <Users className="h-6 w-6" />
+                <div className="p-2 rounded-full bg-gray-50 text-purple-600">
+                  <Users className="h-5 w-5" />
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Charts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        {/* Charts Grid - Reduced spacing */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* Attacks by Type */}
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100">
+            <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-900">Attacks by Type</h3>
               <PieChart className="h-5 w-5 text-blue-600" />
             </div>
-            <div className="h-80">
+            <div className="h-64">
               <Pie data={formatAttacksByType()} options={{
                 responsive: true,
                 maintainAspectRatio: false,
@@ -574,12 +574,12 @@ const Dashboard = () => {
           </div>
 
           {/* Attacks by Demographic */}
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100">
+            <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-900">Attacks by Demographic</h3>
               <BarChart3 className="h-5 w-5 text-green-600" />
             </div>
-            <div className="h-80">
+            <div className="h-64">
               <Doughnut data={formatAttacksByDemographic()} options={{
                 responsive: true,
                 maintainAspectRatio: false,
@@ -593,9 +593,9 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Monthly Trends */}
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 mb-8">
-          <div className="flex items-center justify-between mb-6">
+        {/* Monthly Trends - Reduced spacing */}
+        <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100 mb-6">
+          <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-gray-900">
               {selectedTimeframe === '7d' ? 'Weekly' : 
                selectedTimeframe === '30d' ? 'Monthly' : 
@@ -603,7 +603,7 @@ const Dashboard = () => {
             </h3>
             <Activity className="h-5 w-5 text-purple-600" />
           </div>
-          <div className="h-96">
+          <div className="h-80">
             <Line data={formatMonthlyTrends()} options={{
               responsive: true,
               maintainAspectRatio: false,
@@ -633,13 +633,13 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Age Group Distribution */}
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 mb-8">
-          <div className="flex items-center justify-between mb-6">
+        {/* Age Group Distribution - Reduced spacing */}
+        <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100 mb-6">
+          <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-gray-900">Attacks by Age Group</h3>
             <BarChart3 className="h-5 w-5 text-orange-600" />
           </div>
-          <div className="h-80">
+          <div className="h-64">
             <Bar data={formatAttacksByAge()} options={{
               responsive: true,
               maintainAspectRatio: false,
@@ -667,16 +667,16 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Recent Attacks Feed */}
+        {/* Recent Attacks Feed - Reduced spacing */}
         {dashboardData.recentAttacks && dashboardData.recentAttacks.length > 0 && (
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Attacks</h3>
-            <div className="space-y-4">
+          <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100 mb-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Recent Attacks</h3>
+            <div className="space-y-3">
               {dashboardData.recentAttacks.slice(0, 5).map((attack, index) => (
-                <div key={index} className="border-l-4 border-red-500 pl-4 py-2">
+                <div key={index} className="border-l-4 border-red-500 pl-3 py-2">
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="font-medium text-gray-900">
+                      <p className="font-medium text-gray-900 text-sm">
                         {attack.type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
                       </p>
                       <p className="text-sm text-gray-600">{attack.description}</p>
@@ -706,11 +706,11 @@ const Dashboard = () => {
           </div>
         )}
 
-        {/* Key Insights */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
-            <h3 className="text-lg font-semibold text-blue-900 mb-4">🔍 Key Insights</h3>
-            <ul className="space-y-3 text-blue-800">
+        {/* Key Insights - Reduced spacing */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-200">
+            <h3 className="text-lg font-semibold text-blue-900 mb-3">🔍 Key Insights</h3>
+            <ul className="space-y-2 text-blue-800 text-sm">
               <li className="flex items-start space-x-2">
                 <span className="text-blue-600 mt-1">•</span>
                 <span>Phishing remains the dominant attack vector ({dashboardData.attacksByType[0]?.count || 0}% of all attacks)</span>
@@ -730,9 +730,9 @@ const Dashboard = () => {
             </ul>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-            <h3 className="text-lg font-semibold text-green-900 mb-4">🛡️ Protection Recommendations</h3>
-            <ul className="space-y-3 text-green-800">
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200">
+            <h3 className="text-lg font-semibold text-green-900 mb-3">🛡️ Protection Recommendations</h3>
+            <ul className="space-y-2 text-green-800 text-sm">
               <li className="flex items-start space-x-2">
                 <span className="text-green-600 mt-1">•</span>
                 <span>Enhanced training for students on social media safety</span>
@@ -753,8 +753,8 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Data Source Note */}
-        <div className="mt-8 bg-gray-100 rounded-lg p-4 text-center">
+        {/* Data Source Note - Reduced spacing */}
+        <div className="mt-6 bg-gray-100 rounded-lg p-3 text-center">
           <p className="text-sm text-gray-600">
             📊 <strong>Data Source:</strong> Real-time cyber attack statistics updated every 30 seconds. Data represents {selectedTimeframe === '7d' ? 'weekly' : selectedTimeframe === '30d' ? 'monthly' : selectedTimeframe === '90d' ? 'quarterly' : 'yearly'} trends across India.
           </p>

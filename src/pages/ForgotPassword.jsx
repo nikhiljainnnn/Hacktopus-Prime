@@ -38,7 +38,7 @@ const ForgotPassword = () => {
           <div className="text-center mb-8">
             <Link to="/" className="inline-flex items-center space-x-2 mb-4">
               <Shield className="h-8 w-8 text-blue-600" />
-              <span className="text-2xl font-bold text-gray-900">Hacktopus Prime</span>
+              <span className="text-2xl font-bold text-gray-900">CyberShield</span>
             </Link>
             <div className="flex justify-center mb-4">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
@@ -112,7 +112,7 @@ const ForgotPassword = () => {
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center space-x-2 mb-4">
             <Shield className="h-8 w-8 text-blue-600" />
-            <span className="text-2xl font-bold text-gray-900">Hacktopus Prime</span>
+            <span className="text-2xl font-bold text-gray-900">CyberShield</span>
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Forgot Password?</h1>
           <p className="text-gray-600">Enter your email address and we'll send you a link to reset your password</p>

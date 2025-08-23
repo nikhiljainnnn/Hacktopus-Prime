@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import { Users, GraduationCap, Briefcase, Home, MapPin, User, Shield, AlertTriangle, CheckCircle, BarChart3 } from 'lucide-react'
 
 const Demographics = () => {
-  const [selectedDemo, setSelectedDemo] = useState('students')
-
   const demographics = [
     {
       id: 'students',
@@ -128,90 +126,115 @@ const Demographics = () => {
     }
   ]
 
-  const currentDemo = demographics.find(demo => demo.id === selectedDemo)
+  // Initialize with the first demographic object, not just the ID
+  const [selectedDemo, setSelectedDemo] = useState(demographics[0])
+
+  const handleDemoSelect = (demo) => {
+    setSelectedDemo(demo)
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-4">
-            <Users className="h-12 w-12 text-primary-600" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Tailored Safety for Different Demographics
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Every demographic faces unique cyber threats. Find personalized safety guidance for your group.
+        {/* Header - Reduced spacing */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-3">Tailored Safety Information</h1>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Get personalized cyber safety tips based on your demographic profile
           </p>
         </div>
 
-        {/* Demographics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
-          {demographics.map((demo) => (
-            <button
-              key={demo.id}
-              onClick={() => setSelectedDemo(demo.id)}
-              className={`p-4 rounded-lg text-center transition-all duration-200 ${
-                selectedDemo === demo.id
-                  ? 'bg-primary-50 border-2 border-primary-200 shadow-lg'
-                  : 'bg-white hover:bg-gray-50 border-2 border-transparent shadow'
-              }`}
-            >
-              <div className={`w-12 h-12 rounded-lg ${demo.color} flex items-center justify-center mx-auto mb-3`}>
-                <demo.icon className="h-6 w-6" />
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-1">{demo.name}</h3>
-              <p className="text-xs text-gray-600">{demo.description}</p>
-            </button>
-          ))}
+        {/* Demographic Selection - Reduced spacing */}
+        <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100 mb-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Select Your Profile</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {demographics.map((demo) => (
+              <button
+                key={demo.id}
+                onClick={() => handleDemoSelect(demo)}
+                className={`p-3 rounded-lg border-2 transition-all duration-200 text-left ${
+                  selectedDemo?.id === demo.id
+                    ? 'border-blue-500 bg-blue-50'
+                    : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <div className="flex items-center space-x-2 mb-2">
+                  <demo.icon className={`h-5 w-5 ${demo.color}`} />
+                  <span className="font-medium text-gray-900">{demo.name}</span>
+                </div>
+                <p className="text-xs text-gray-600">{demo.description}</p>
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Detailed Information */}
-        {currentDemo && (
-          <div className="space-y-8">
-            {/* Risks Section */}
-            <div className="card">
-              <div className="flex items-center mb-6">
-                <AlertTriangle className="h-6 w-6 text-red-600 mr-2" />
-                <h2 className="text-2xl font-bold text-gray-900">Common Risks for {currentDemo.name}</h2>
+        {/* Selected Demographic Info - Reduced spacing */}
+        {selectedDemo && (
+          <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100 mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center space-x-3">
+                <div className={`p-2 rounded-lg ${selectedDemo.color}`}>
+                  <selectedDemo.icon className={`h-6 w-6 ${selectedDemo.color}`} />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">{selectedDemo.name}</h2>
+                  <p className="text-gray-600">{selectedDemo.description}</p>
+                </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {currentDemo.risks.map((risk, index) => (
-                  <div key={index} className="flex items-start space-x-3 p-3 bg-red-50 rounded-lg">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">{risk}</p>
-                  </div>
-                ))}
+              <Link
+                to="/dashboard"
+                className="inline-flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors text-sm"
+              >
+                <BarChart3 className="h-4 w-4" />
+                <span>View Dashboard</span>
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Common Threats */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Common Threats</h3>
+                <div className="space-y-3">
+                  {selectedDemo.risks.map((risk, index) => (
+                    <div key={index} className="flex items-start space-x-3 p-3 bg-red-50 rounded-lg border border-red-200">
+                      <AlertTriangle className="h-4 w-4 text-red-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-medium text-red-900 text-sm">{risk}</h4>
+                        <p className="text-red-800 text-xs">{risk}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Safety Tips */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Safety Tips</h3>
+                <div className="space-y-3">
+                  {selectedDemo.tips.map((tip, index) => (
+                    <div key={index} className="flex items-start space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                      <Shield className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-medium text-green-900 text-sm">{tip}</h4>
+                        <p className="text-green-800 text-xs">{tip}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Safety Tips */}
-            <div className="card">
-              <div className="flex items-center mb-6">
-                <Shield className="h-6 w-6 text-green-600 mr-2" />
-                <h2 className="text-2xl font-bold text-gray-900">Safety Tips for {currentDemo.name}</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {currentDemo.tips.map((tip, index) => (
-                  <div key={index} className="flex items-start space-x-3 p-3 bg-green-50 rounded-lg">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <p className="text-gray-700">{tip}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Resources */}
-            <div className="card">
-              <div className="flex items-center mb-6">
-                <Users className="h-6 w-6 text-blue-600 mr-2" />
-                <h2 className="text-2xl font-bold text-gray-900">Helpful Resources</h2>
-              </div>
+            {/* Additional Resources */}
+            <div className="mt-6 pt-4 border-t border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Additional Resources</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {currentDemo.resources.map((resource, index) => (
-                  <div key={index} className="p-4 bg-blue-50 rounded-lg text-center">
-                    <p className="text-blue-800 font-medium">{resource}</p>
+                {selectedDemo.resources.map((resource, index) => (
+                  <div key={index} className="text-center p-3 bg-gray-50 rounded-lg">
+                    <div className="flex justify-center mb-2">
+                      <Users className="h-5 w-5 text-blue-600" />
+                    </div>
+                    <h4 className="font-medium text-gray-900 text-sm mb-1">{resource}</h4>
+                    <p className="text-gray-600 text-xs">{resource}</p>
                   </div>
                 ))}
               </div>
@@ -219,75 +242,51 @@ const Demographics = () => {
           </div>
         )}
 
-        {/* General Advice */}
-        <div className="mt-12 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            Universal Safety Principles
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <Shield className="h-6 w-6 text-blue-600" />
-              </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Verify Everything</h4>
-              <p className="text-gray-600 text-sm">Always verify information from official sources before taking action</p>
+        {/* Statistics Overview - Reduced spacing */}
+        <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100 mb-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Statistics Overview</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="text-center p-3 bg-gray-50 rounded-lg">
+              <div className="text-2xl font-bold text-blue-600 mb-1">45%</div>
+              <div className="text-sm font-medium text-gray-900 mb-1">Students Affected</div>
+              <div className="text-xs text-gray-600">Most vulnerable group</div>
             </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <CheckCircle className="h-6 w-6 text-green-600" />
-              </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Stay Updated</h4>
-              <p className="text-gray-600 text-sm">Keep your devices and apps updated with the latest security patches</p>
+            <div className="text-center p-3 bg-gray-50 rounded-lg">
+              <div className="text-2xl font-bold text-green-600 mb-1">32%</div>
+              <div className="text-sm font-medium text-gray-900 mb-1">Professionals</div>
+              <div className="text-xs text-gray-600">Corporate threats</div>
             </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <Users className="h-6 w-6 text-purple-600" />
-              </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Ask for Help</h4>
-              <p className="text-gray-600 text-sm">Don't hesitate to ask trusted family members or friends for help</p>
+            <div className="text-center p-3 bg-gray-50 rounded-lg">
+              <div className="text-2xl font-bold text-purple-600 mb-1">18%</div>
+              <div className="text-sm font-medium text-gray-900 mb-1">Homemakers</div>
+              <div className="text-xs text-gray-600">Shopping scams</div>
+            </div>
+            <div className="text-center p-3 bg-gray-50 rounded-lg">
+              <div className="text-2xl font-bold text-orange-600 mb-1">5%</div>
+              <div className="text-sm font-medium text-gray-900 mb-1">Others</div>
+              <div className="text-xs text-gray-600">Rural & seniors</div>
             </div>
           </div>
         </div>
 
-        {/* Dashboard Button */}
-        <div className="mt-12 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-8 text-center">
-          <div className="flex justify-center mb-4">
-            <BarChart3 className="h-12 w-12 text-blue-600" />
-          </div>
-          <h3 className="text-2xl font-bold text-blue-900 mb-4">Want to See Real Attack Data?</h3>
-          <p className="text-blue-700 mb-6 max-w-2xl mx-auto">
-            Explore our comprehensive dashboard with interactive charts showing cyber attack statistics, 
-            threat distributions, and demographic vulnerabilities across India.
-          </p>
-          <Link 
-            to="/dashboard" 
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg"
-          >
-            <BarChart3 className="h-5 w-5" />
-            <span>View Live Dashboard</span>
-          </Link>
-        </div>
-
-        {/* Emergency Contacts */}
-        <div className="mt-12 bg-red-50 border border-red-200 rounded-xl p-6">
-          <h3 className="text-xl font-bold text-red-900 mb-4 text-center">Emergency Contacts</h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
-            <div className="bg-white p-4 rounded-lg">
-              <strong className="text-red-900 block">Cyber Crime</strong>
-              <div className="text-red-700">1930</div>
-            </div>
-            <div className="bg-white p-4 rounded-lg">
-              <strong className="text-red-900 block">Police</strong>
-              <div className="text-red-700">100</div>
-            </div>
-            <div className="bg-white p-4 rounded-lg">
-              <strong className="text-red-900 block">Women Helpline</strong>
-              <div className="text-red-700">1091</div>
-            </div>
-            <div className="bg-white p-4 rounded-lg">
-              <strong className="text-red-900 block">Senior Citizens</strong>
-              <div className="text-red-700">14567</div>
-            </div>
+        {/* Call to Action - Reduced spacing */}
+        <div className="text-center">
+          <p className="text-gray-600 mb-3">Ready to learn more about cyber safety?</p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              to="/threats"
+              className="inline-flex items-center space-x-2 bg-red-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+            >
+              <AlertTriangle className="h-4 w-4" />
+              <span>Learn About Threats</span>
+            </Link>
+            <Link
+              to="/quiz"
+              className="inline-flex items-center space-x-2 bg-green-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+            >
+              <CheckCircle className="h-4 w-4" />
+              <span>Take Safety Quiz</span>
+            </Link>
           </div>
         </div>
       </div>

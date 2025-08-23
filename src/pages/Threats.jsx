@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { AlertTriangle, Mail, Smartphone, CreditCard, User, Shield, CheckCircle, XCircle } from 'lucide-react'
+import { AlertTriangle, Mail, Smartphone, CreditCard, User, Shield, CheckCircle, XCircle, X } from 'lucide-react'
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 const Threats = () => {
   const [activeTab, setActiveTab] = useState('phishing')
@@ -86,136 +88,177 @@ const Threats = () => {
   const currentThreat = threats.find(threat => threat.id === activeTab)
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-4">
-            <AlertTriangle className="h-12 w-12 text-red-600" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Common Cyber Threats in India
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Learn about the most common cyber threats targeting Indians and how to protect yourself from them.
+        {/* Header - Reduced spacing */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-3">Cyber Threats & Prevention</h1>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Learn about common cyber threats in India and how to protect yourself
           </p>
         </div>
 
-        {/* Threat Tabs */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {threats.map((threat) => (
-              <button
-                key={threat.id}
-                onClick={() => setActiveTab(threat.id)}
-                className={`p-4 rounded-lg text-left transition-all duration-200 ${
-                  activeTab === threat.id
-                    ? 'bg-primary-50 border-2 border-primary-200'
-                    : 'bg-gray-50 hover:bg-gray-100 border-2 border-transparent'
-                }`}
-              >
-                <div className={`w-10 h-10 rounded-lg ${threat.color} flex items-center justify-center mb-3`}>
-                  <threat.icon className="h-5 w-5" />
+        {/* Threat Categories - Reduced spacing */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+          {threats.map((threat, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-md p-4 border border-gray-100 hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+              onClick={() => setActiveTab(threat.id)}
+            >
+              <div className="flex items-center space-x-3 mb-3">
+                <div className={`p-2 rounded-lg ${threat.color}`}>
+                  <threat.icon className={`h-5 w-5 ${threat.color.replace('bg-', 'text-')}`} />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1">{threat.name}</h3>
-                <p className="text-sm text-gray-600">{threat.description}</p>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Threat Details */}
-        {currentThreat && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Examples */}
-            <div className="card">
-              <div className="flex items-center mb-6">
-                <XCircle className="h-6 w-6 text-red-600 mr-2" />
-                <h2 className="text-2xl font-bold text-gray-900">Common Examples</h2>
+                <h3 className="text-lg font-semibold text-gray-900">{threat.name}</h3>
               </div>
-              <div className="space-y-4">
-                {currentThreat.examples.map((example, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-700">{example}</p>
-                  </div>
-                ))}
+              <p className="text-gray-600 text-sm mb-3">{threat.description}</p>
+              <div className="flex items-center justify-between">
+                <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${threat.color}`}>
+                  {threat.name}
+                </span>
+                <span className="text-blue-600 text-sm font-medium">Learn More →</span>
               </div>
             </div>
+          ))}
+        </div>
 
-            {/* Prevention */}
-            <div className="card">
-              <div className="flex items-center mb-6">
-                <Shield className="h-6 w-6 text-green-600 mr-2" />
-                <h2 className="text-2xl font-bold text-gray-900">How to Protect Yourself</h2>
+        {/* Selected Threat Details - Reduced spacing */}
+        {currentThreat && (
+          <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-100 mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center space-x-3">
+                <div className={`p-3 rounded-lg ${currentThreat.color}`}>
+                  <currentThreat.icon className={`h-6 w-6 ${currentThreat.color.replace('bg-', 'text-')}`} />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">{currentThreat.name}</h2>
+                  <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${currentThreat.color}`}>
+                    {currentThreat.name}
+                  </span>
+                </div>
               </div>
-              <div className="space-y-4">
-                {currentThreat.prevention.map((tip, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                    <p className="text-gray-700">{tip}</p>
-                  </div>
-                ))}
+              <button
+                onClick={() => setActiveTab('phishing')}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Threat Information */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">What is it?</h3>
+                <p className="text-gray-600 mb-4">{currentThreat.description}</p>
+                
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">How it works</h3>
+                <ul className="space-y-2 mb-4">
+                  {currentThreat.examples.map((example, index) => (
+                    <li key={index} className="flex items-start space-x-2">
+                      <span className="text-blue-600 mt-1">•</span>
+                      <span className="text-gray-600 text-sm">{example}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Warning Signs</h3>
+                <ul className="space-y-2">
+                  {currentThreat.prevention.map((tip, index) => (
+                    <li key={index} className="flex items-start space-x-2">
+                      <span className="text-red-600 mt-1">⚠</span>
+                      <span className="text-gray-600 text-sm">{tip}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Prevention & Examples */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">How to Protect Yourself</h3>
+                <ul className="space-y-2 mb-4">
+                  {currentThreat.prevention.map((tip, index) => (
+                    <li key={index} className="flex items-start space-x-2">
+                      <span className="text-green-600 mt-1">✓</span>
+                      <span className="text-gray-600 text-sm">{tip}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Real Examples</h3>
+                <div className="space-y-3">
+                  {currentThreat.examples.map((example, index) => (
+                    <div key={index} className="bg-gray-50 p-3 rounded-lg border-l-4 border-red-500">
+                      <p className="text-gray-800 text-sm font-medium mb-1">{example}</p>
+                      <p className="text-gray-600 text-xs">{example}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                  <h4 className="text-blue-900 font-semibold text-sm mb-1">Emergency Action</h4>
+                  <p className="text-blue-800 text-xs">
+                    If you've fallen victim to this threat, immediately contact the cyber crime helpline at 1930 or visit cybercrime.gov.in
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Emergency Section */}
-        <div className="mt-12 bg-red-50 border border-red-200 rounded-xl p-6">
-          <div className="flex items-center mb-4">
-            <AlertTriangle className="h-6 w-6 text-red-600 mr-2" />
-            <h3 className="text-xl font-bold text-red-900">Emergency Contacts</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div className="bg-white p-4 rounded-lg">
-              <strong className="text-red-900">Cyber Crime Helpline:</strong>
-              <div className="text-red-700">1930</div>
+        {/* Quick Safety Tips - Reduced spacing */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+          <h2 className="text-xl font-bold text-blue-900 mb-4">Quick Safety Tips</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="text-center">
+              <div className="flex justify-center mb-2">
+                <div className="p-2 bg-blue-100 rounded-full">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                </div>
+              </div>
+              <h3 className="text-sm font-semibold text-blue-900 mb-1">Enable 2FA on all accounts</h3>
+              <p className="text-blue-800 text-xs">Use strong, unique passwords</p>
             </div>
-            <div className="bg-white p-4 rounded-lg">
-              <strong className="text-red-900">Police Emergency:</strong>
-              <div className="text-red-700">100</div>
+            <div className="text-center">
+              <div className="flex justify-center mb-2">
+                <div className="p-2 bg-blue-100 rounded-full">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                </div>
+              </div>
+              <h3 className="text-sm font-semibold text-blue-900 mb-1">Use strong, unique passwords</h3>
+              <p className="text-blue-800 text-xs">Enable 2FA on all accounts</p>
             </div>
-            <div className="bg-white p-4 rounded-lg">
-              <strong className="text-red-900">Online Portal:</strong>
-              <div className="text-red-700">cybercrime.gov.in</div>
+            <div className="text-center">
+              <div className="flex justify-center mb-2">
+                <div className="p-2 bg-blue-100 rounded-full">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                </div>
+              </div>
+              <h3 className="text-sm font-semibold text-blue-900 mb-1">Keep software updated</h3>
+              <p className="text-blue-800 text-xs">Use strong, unique passwords</p>
+            </div>
+            <div className="text-center">
+              <div className="flex justify-center mb-2">
+                <div className="p-2 bg-blue-100 rounded-full">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                </div>
+              </div>
+              <h3 className="text-sm font-semibold text-blue-900 mb-1">Verify before sharing information</h3>
+              <p className="text-blue-800 text-xs">Enable 2FA on all accounts</p>
             </div>
           </div>
         </div>
 
-        {/* Safety Tips */}
-        <div className="mt-12 bg-blue-50 border border-blue-200 rounded-xl p-6">
-          <h3 className="text-xl font-bold text-blue-900 mb-4">General Safety Tips</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-4 w-4 text-blue-600" />
-                <span className="text-blue-800">Enable 2FA on all accounts</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-4 w-4 text-blue-600" />
-                <span className="text-blue-800">Use strong, unique passwords</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-4 w-4 text-blue-600" />
-                <span className="text-blue-800">Keep software updated</span>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-4 w-4 text-blue-600" />
-                <span className="text-blue-800">Verify before sharing information</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-4 w-4 text-blue-600" />
-                <span className="text-blue-800">Monitor bank statements regularly</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="h-4 w-4 text-blue-600" />
-                <span className="text-blue-800">Report suspicious activities</span>
-              </div>
-            </div>
-          </div>
+        {/* Call to Action - Reduced spacing */}
+        <div className="text-center mt-8">
+          <p className="text-gray-600 mb-3">Want to test your knowledge?</p>
+          <Link
+            to="/quiz"
+            className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+          >
+            <span>Take Safety Quiz</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </div>
